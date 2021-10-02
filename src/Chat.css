@@ -32,13 +32,17 @@
   background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
   background-repeat: repeat;
   background-position: center;
-  padding: 30px;
+  padding-right: 40px;
+  padding-left: 40px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   overflow: scroll;
 }
 
 .chat_message {
   position: relative;
   font-size: 16px;
+
   padding: 10px;
   border-radius: 10px;
   width: fit-content;
@@ -47,15 +51,18 @@
 }
 .chat_name {
   position: absolute;
+
   top: -15px;
   font-weight: 800;
   font-size: xx-small;
+  white-space: nowrap;
 }
 .chat_receiver {
   margin-left: auto;
   background-color: #dcf8c6;
 }
 .time_stamp {
+  color: rgb(155, 153, 153);
   margin-left: 10px;
   font-size: xx-small;
 }
@@ -76,6 +83,7 @@
   border-radius: 30px;
   padding: 10px;
   border: none;
+  outline: none;
 }
 button {
   border: none;
@@ -84,4 +92,9 @@ button {
 .chat_footer > .MuiSvgIcon-root {
   padding: 10px;
   color: grey;
+}
+
+p > span > .MuiSvgIcon-root {
+  font-size: 13px !important;
+  margin-left: 2px;
 }

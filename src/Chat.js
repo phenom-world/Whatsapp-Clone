@@ -7,6 +7,7 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
 import SendIcon from "@material-ui/icons/Send";
+import DoneIcon from "@material-ui/icons/Done";
 import db from "./firebase";
 import { useStateValue } from "./StateProvider";
 import firebase from "firebase";
@@ -60,10 +61,11 @@ function Chat() {
         <div className="chat_headerInfo">
           <h3>{roomName}</h3>
           <p>
-            last seen{""}
+            last seen{" "}
             {new Date(
               messages[messages.length - 1]?.timestamp?.toDate()
             ).toUTCString()}
+            ;
           </p>
         </div>
         <div className="chat_headerRight">
@@ -80,11 +82,22 @@ function Chat() {
       </div>
       <div className="chat_body">
         {messages.map((message) => (
-          <p className={`chat_message ${true && "chat_receiver"}`}>
+          <p
+            className={`chat_message ${
+              message.name === user.displayName && `chat_receiver`
+            }`}
+          >
             <span className="chat_name">{message.name}</span>
             {message.message}
             <span className="time_stamp">
-              {new Date(message.timestamp?.toDate()).toUTCString()}
+              {new Date(
+                messages[messages.length - 1]?.timestamp?.toDate()
+              ).toLocaleTimeString("en-US", {
+                hour: "numeric",
+                hour12: true,
+                minute: "numeric",
+              })}
+              {message.name === user.displayName ? <DoneIcon /> : null}
             </span>
           </p>
         ))}
@@ -99,7 +112,11 @@ function Chat() {
             placeholder="Type a message"
           />
 
-          <button onClick={sendMessage} type="submit">
+          <button
+            onClick={sendMessage}
+            type="submit"
+            style={{ cursor: "pointer" }}
+          >
             <SendIcon />
           </button>
         </form>

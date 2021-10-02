@@ -7,7 +7,6 @@ import { useStateValue } from "./StateProvider";
 
 function App() {
   const [user, dispatch] = useStateValue(); //cannot read user, curly bracket removed
-  console.log(user);
   return (
     <div className="app">
       {!user ? (
